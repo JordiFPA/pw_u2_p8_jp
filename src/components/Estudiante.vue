@@ -1,18 +1,32 @@
 <template>
   <div class="container">
-    <label for="id_nombre">Nombre</label>
-    <input v-model="nuevoNombre" id="id_nombre" type="text" />
-    <label for="id_apellido">Apellido</label>
-    <input v-model="nuevoApellido" id="id_apellido" type="text" />
+    <div class="formulario">
+      <label for="id_nombre">Nombre</label>
+      <input v-model="nuevoNombre" id="id_nombre" type="text" />
 
-    <button v-on:click="agregarEstudiante()">Agregar Boton</button>
-    {{nuevoNombre}}
-    {{nuevoApellido}}
+      <label for="id_apellido">Apellido</label>
+      <input v-model="nuevoApellido" id="id_apellido" type="text" />
+
+      <label for="id_cedula">C.I</label>
+      <input v-model="nuevaCedula" id="id_cedula" type="number" />
+
+      <label for="id_edad">Edad</label>
+      <input v-model="nuevadaEdad" id="id_edad" type="number" />
+
+      <label for="id_semestre">Semestre</label>
+      <input v-model="nuevoSemestre" id="id_semestre" type="number" />
+      <div class="centrar_boton">
+        <button v-on:click="agregarEstudiante()">Agregar Estudiante</button>
+      </div>
+    </div>
     <ul>
       <li
-        v-for="{nombre, apellido} in lista"
+        v-for="{ nombre, apellido, cedula, edad, semestre } in lista"
         :key="nombre"
-      >Nombre:{{nombre}} - apellido: {{apellido}}</li>
+      >
+        Nombre:{{ nombre }} - apellido: {{ apellido }} - cedula: {{ cedula }} -
+        edad {{ edad }} - semestre {{ semestre }}
+      </li>
     </ul>
   </div>
 </template>
@@ -21,17 +35,63 @@
 export default {
   data() {
     return {
-      nuevoNombre: "nuevo", 
-      nuevoApellido:"nuevoApellido",
+      nuevoNombre: "nuevoNombre",
+      nuevoApellido: "nuevoApellido",
+      nuevaCedula: "nuevaCedula",
+      nuevadaEdad: "nuevadaEdad",
+      nuevoSemestre: "nuevoSemestre",
+
       lista: [
-        { nombre: "Jordi", apellido: "Pila" },
-        { nombre: "Melany", apellido: "Caizapasto" },
-        { nombre: "Adriana", apellido: "Pila" },
-        { nombre: "Byron", apellido: "Flores" },
-        { nombre: "Michael", apellido: "Barrios" },
-        { nombre: "Maria", apellido: "Montero" },
-        { nombre: "Jordy", apellido: "Caiza" }
-      ]
+        {
+          nombre: "Jordi",
+          apellido: "Pila",
+          cedula: "1752908085",
+          edad: "22",
+          semestre: "8",
+        },
+        {
+          nombre: "Melany",
+          apellido: "Caizapasto",
+          cedula: "1452908075",
+          edad: "24",
+          semestre: "4",
+        },
+        {
+          nombre: "Adriana",
+          apellido: "Pila",
+          cedula: "1456908085",
+          edad: "25",
+          semestre: "2",
+        },
+        {
+          nombre: "Byron",
+          apellido: "Flores",
+          cedula: "1698908085",
+          edad: "24",
+          semestre: "6",
+        },
+        {
+          nombre: "Michael",
+          apellido: "Barrios",
+          cedula: "1456908085",
+          edad: "32",
+          semestre: "10",
+        },
+        {
+          nombre: "Maria",
+          apellido: "Montero",
+          cedula: "1789908085",
+          edad: "19",
+          semestre: "1",
+        },
+        {
+          nombre: "Jordy",
+          apellido: "Caiza",
+          cedula: "02032908085",
+          edad: "27",
+          semestre: "9",
+        },
+      ],
     };
   },
   methods: {
@@ -39,13 +99,36 @@ export default {
       const nuevo = {
         nombre: this.nuevoNombre,
         apellido: this.nuevoApellido,
+        cedula: this.nuevaCedula,
+        edad: this.nuevadaEdad,
+        semestre: this.nuevoSemestre,
       };
       //this.lista.unshift(nuevo);
       this.lista.push(nuevo);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
+.container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.formulario {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+.centrar_boton {
+  padding-top: 20px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
 </style>
