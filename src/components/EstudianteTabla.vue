@@ -1,29 +1,47 @@
 <template>
   <div class="container">
-    <div class="formulario">
-      <label for="id_nombre">Nombre</label>
-      <input v-model="nuevoNombre" id="id_nombre" type="text" />
-
-      <label for="id_apellido">Apellido</label>
-      <input v-model="nuevoApellido" id="id_apellido" type="text" />
-
-      <label for="id_cedula">C.I</label>
-      <input v-model="nuevaCedula" id="id_cedula" type="number" />
-
-      <label for="id_edad">Edad</label>
-      <input v-model="nuevadaEdad" id="id_edad" type="number" />
-
-      <label for="id_semestre">Semestre</label>
-      <input v-model="nuevoSemestre" id="id_semestre" type="number" />
-
-      <button v-on:click="agregarEstudiante()">Agregar</button>
+    <div v-show="mostrar">
+      <h1>Estudiante Guardado</h1>
     </div>
-    <ul>
-      <li v-for="{ nombre, apellido, cedula, edad, semestre } in lista" :key="nombre">
-        Nombre:{{ nombre }} - apellido: {{ apellido }} - cedula: {{ cedula }} -
-        edad {{ edad }} - semestre {{ semestre }}
-      </li>
-    </ul>
+    <label for="id_nombre">Nombre</label>
+    <input v-model="nuevoNombre" id="id_nombre" type="text" />
+
+    <label for="id_apellido">Apellido</label>
+    <input v-model="nuevoApellido" id="id_apellido" type="text" />
+
+    <label for="id_cedula">C.I</label>
+    <input v-model="nuevaCedula" id="id_cedula" type="number" />
+
+    <label for="id_edad">Edad</label>
+    <input v-model="nuevadaEdad" id="id_edad" type="number" />
+
+    <label for="id_semestre">Semestre</label>
+    <input v-model="nuevoSemestre" id="id_semestre" type="number" />
+
+    <button v-on:click="agregarEstudiante()">Agregar</button>
+
+    <table border="1">
+      <thead>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cedula</th>
+        <th>edad</th>
+        <th>Semestre</th>
+        <th>Ver</th>
+      </thead>
+      <tbody>
+        <tr v-for="{ nombre, apellido, cedula, edad, semestre } in lista" :key="nombre">
+          <td>{{nombre}}</td>
+          <td>{{apellido}}</td>
+          <td>{{cedula}}</td>
+          <td>{{edad}}</td>
+          <td>{{semestre}}</td>
+          <td>
+            <button id="Ver">Ver</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -87,7 +105,8 @@ export default {
           edad: "27",
           semestre: "9"
         }
-      ]
+      ],
+      mostrar: false
     };
   },
   methods: {
@@ -101,6 +120,10 @@ export default {
       };
       //this.lista.unshift(nuevo);
       this.lista.push(nuevo);
+      this.mostrar = true;
+      setTimeout(() => {
+        this.mostrar = false;
+      }, 2000);
     }
   }
 };
@@ -156,5 +179,22 @@ li {
   margin-bottom: 15px;
   color: #333;
   font-size: 20px;
+}
+table {
+  margin: 50px auto;
+  border-radius: 25px;
+}
+th {
+  width: 100px;
+  color: #4e91f9;
+  border-radius: 15px;
+}
+tr {
+  font-size: 15px;
+  align-content: center;
+}
+
+#ver {
+  margin-bottom: 25px;
 }
 </style>
