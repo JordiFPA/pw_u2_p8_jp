@@ -5,6 +5,10 @@
       <div v-show="mostrar">
         <h2>Auto Agregado Correctamente</h2>
       </div>
+      <div v-show="completo">
+        <h2 id="alerta">Complete todos los campos</h2>
+        
+      </div>
 
       <p type="Modelo">
         <input type="text" name="" id="id_modelo" v-model="nuevoModelo" />
@@ -71,10 +75,25 @@ export default {
         },
       ],
       mostrar: false,
+      completo: false,
     };
   },
   methods: {
     agregarVehiculo() {
+      if (
+        this.nuevoModelo === "" ||
+        this.nuevaMarca === "" ||
+        this.nuevoColor === "" ||
+        this.nuevoTipo === "" ||
+        this.nuevaPlaca === ""
+      ) {
+        this.completo= true;
+        setTimeout(() => {
+        this.completo = false;
+       
+      }, 2000);
+        return;
+      }
       const nuevoVehiculo = {
         modelo: this.nuevoModelo,
         marca: this.nuevaMarca,
@@ -86,6 +105,7 @@ export default {
       this.mostrar = true;
       setTimeout(() => {
         this.mostrar = false;
+       
       }, 2000);
     },
     limpiar() {
@@ -189,5 +209,11 @@ td {
   border: solid rgb(3, 3, 40);
   font-size: 30px;
   text-align: center;
+  border-radius: 10 px;
+} 
+#alerta {
+  color: red;
+  text-align: center;
+  font-size: 30px;
 }
 </style>
