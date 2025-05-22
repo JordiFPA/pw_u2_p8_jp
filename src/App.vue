@@ -2,7 +2,8 @@
   <!-- HolaMundoView> </HolaMundoView> -->
   <!-- ContadorView /> -->
   <!-- EstudianteTablaView /> -->
-  <VehiculoView />
+  <!-- VehiculoView /> -->
+  <PreguntaView />
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import ContadorView from "@/views/ContadorView.vue";
 import EstudianteView from "@/views/EstudianteView.vue";
 import EstudianteTablaView from "@/views/EstudianteTablaView.vue";
 import VehiculoView from "@/views/VehiculoView.vue";
+import PreguntaView from "@/views/PreguntaView.vue";
 
 export default {
   name: "App",
@@ -20,11 +22,12 @@ export default {
     EstudianteView,
     EstudianteTablaView,
     VehiculoView,
-  },
+    PreguntaView
+  }
 };
 </script>
 
-<style>
+<style scopped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
