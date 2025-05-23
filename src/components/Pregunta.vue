@@ -1,31 +1,50 @@
 <template>
   <div class="container">
-    <img
-      src="https://yesno.wtf/assets/no/19-2062f4c91189b1f88a9e809c10a5b0f0.gif"
-      alt="No se pudo cargar"
-    />
+    <img v-if="imagen" :src="imagen" alt="No se pudo cargar" />
     <div class="container-2"></div>
     <div class="PreguntaContainer">
       <input v-model="pregunta" type="text" placeholder="Hazme una pregunta" />
       <p>Recuerda terminar con un signo de pregunta (?)</p>
-      <h2>{{pregunta}}</h2>
-      <h1>{{respuesta}}</h1>
+      <div v-if="esValida">
+        <h2>{{pregunta}}</h2>
+        <h1>{{respuesta}}</h1>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { consultarRespuestaFachada } from "@/clients/YesNoClient.js";
 export default {
   data() {
     return {
       pregunta: null,
-      respuesta: null
+      respuesta: null,
+      imagen: null,
+      esValida: false
     };
   },
   watch: {
-    pregunta(value,oldValue) {
+    pregunta(value, oldValue) {
+      this.esValida = false;
+      if (value.includes("?")) {
+        this.esValida = true;
         console.log("Valor actual: " + value);
         console.log("Valor anterior: " + oldValue);
+        this.consumirApi();
+      }
+    }
+  },
+  methods: {
+    async consumirApi() {
+      this.respuesta = "Pensando.......";
+      const resp = await consultarRespuestaFachada();
+      console.log(resp);
+      console.log(resp.image);
+      console.log(resp.answer);
+      console.log(resp.foce);
+      this.respuesta = resp.answer;
+      this.imagen = resp.image;
     }
   }
 };
@@ -71,5 +90,6 @@ h2 {
 }
 h2 {
   margin-top: 200px;
+  margin-bottom: 200px;
 }
 </style>
