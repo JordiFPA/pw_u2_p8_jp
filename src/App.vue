@@ -3,7 +3,8 @@
   <!-- ContadorView /> -->
   <!-- EstudianteTablaView /> -->
   <!-- VehiculoView /> -->
-  <PreguntaView />
+  <!-- PreguntaView /> -->
+  <PerritoView />
 </template>
 
 <script>
@@ -13,6 +14,7 @@ import EstudianteView from "@/views/EstudianteView.vue";
 import EstudianteTablaView from "@/views/EstudianteTablaView.vue";
 import VehiculoView from "@/views/VehiculoView.vue";
 import PreguntaView from "@/views/PreguntaView.vue";
+import PerritoView from "@/views/PerritoView.vue";
 
 export default {
   name: "App",
@@ -22,7 +24,8 @@ export default {
     EstudianteView,
     EstudianteTablaView,
     VehiculoView,
-    PreguntaView
+    PreguntaView,
+    PerritoView,
   }
 };
 </script>
@@ -33,7 +36,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #cbe1f6;
   margin-top: 60px;
 }
 </style>
